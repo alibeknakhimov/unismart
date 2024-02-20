@@ -167,10 +167,10 @@ class _MyWidgetState extends State<MyWidget> {
                         child: Column(
                           children: <Widget>[
                             Icon(
-                              Icons.door_sliding_sharp,
+                              Icons.ac_unit_sharp,
                               size: 50,
                             ),
-                            Text("Дверь"),
+                            Text("Кондиционер"),
                           ],
                         ),
                         style: ElevatedButton.styleFrom(
@@ -188,10 +188,10 @@ class _MyWidgetState extends State<MyWidget> {
                         child: Column(
                           children: <Widget>[
                             Icon(
-                              Icons.tv,
+                              Icons.air,
                               size: 50,
                             ),
-                            Text("Проектор"),
+                            Text("Ионизатор"),
                           ],
                         ),
                         style: ElevatedButton.styleFrom(
@@ -215,7 +215,7 @@ class _MyWidgetState extends State<MyWidget> {
                     width: displayWidth * 0.845,
                     height: displayHeight * 0.455,
                     child: Center(
-                        child: selectedButton == 1
+                        child: selectedButton == 1 && selectedCab == 400
                             ? Row(
                                 children: [
                                   Expanded(child: Container()),
@@ -284,7 +284,7 @@ class _MyWidgetState extends State<MyWidget> {
                                   Expanded(child: Container()),
                                 ],
                               )
-                            : selectedButton == 2
+                            : selectedButton == 1 && selectedCab != 400
                                 ? ElevatedButton(
                                     onPressed: () {
                                       if (selectedCab != null) {
@@ -292,21 +292,20 @@ class _MyWidgetState extends State<MyWidget> {
                                             .instance
                                             .collection('cabinets')
                                             .doc('${selectedCab!}');
-                                        docUser.update({'door': true});
+                                        docUser.update({'light': true});
                                       }
                                     },
                                     child: Icon(
-                                      Icons.lock_open,
+                                      Icons.lightbulb_circle,
                                       color: Colors.white,
                                       size: 70,
                                     ),
                                     style: ElevatedButton.styleFrom(
-                                        shape: CircleBorder(),
                                         backgroundColor:
                                             Color.fromARGB(255, 159, 206, 95),
                                         fixedSize: Size(120, 120)),
                                   )
-                                : selectedButton == 3
+                                : selectedButton == 2
                                     ? ElevatedButton(
                                         onPressed: () {
                                           if (selectedCab != null) {
@@ -318,17 +317,37 @@ class _MyWidgetState extends State<MyWidget> {
                                           }
                                         },
                                         child: Icon(
-                                          Icons.tv_rounded,
+                                          Icons.lock_open,
                                           color: Colors.white,
                                           size: 70,
                                         ),
                                         style: ElevatedButton.styleFrom(
-                                            shape: CircleBorder(),
                                             backgroundColor: Color.fromARGB(
                                                 255, 159, 206, 95),
                                             fixedSize: Size(120, 120)),
                                       )
-                                    : null),
+                                    : selectedButton == 3
+                                        ? ElevatedButton(
+                                            onPressed: () {
+                                              if (selectedCab != null) {
+                                                final docUser =
+                                                    FirebaseFirestore.instance
+                                                        .collection('cabinets')
+                                                        .doc('${selectedCab!}');
+                                                docUser.update({'ioni': true});
+                                              }
+                                            },
+                                            child: Icon(
+                                              Icons.tv_rounded,
+                                              color: Colors.white,
+                                              size: 70,
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                                backgroundColor: Color.fromARGB(
+                                                    255, 159, 206, 95),
+                                                fixedSize: Size(120, 120)),
+                                          )
+                                        : null),
                   ),
                 ],
               ),
