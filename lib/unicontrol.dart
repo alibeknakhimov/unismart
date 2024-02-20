@@ -158,24 +158,52 @@ class _MyWidgetState extends State<MyWidget> {
                         ),
                       ),
                       Expanded(child: Container()),
-                      ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            selectedButton = 2; // Дверь
-                          });
-                        },
-                        child: Column(
-                          children: <Widget>[
-                            Icon(
-                              Icons.ac_unit_sharp,
-                              size: 50,
-                            ),
-                            Text("Кондиционер"),
-                          ],
+                      Visibility(
+                        visible: selectedCab ==
+                            400, // Показываем кнопку только если выбран кабинет 400
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              selectedButton = 2; // Дверь
+                            });
+                          },
+                          child: Column(
+                            children: <Widget>[
+                              Icon(
+                                Icons.ac_unit_sharp,
+                                size: 50,
+                              ),
+                              Text("Кондиционер"),
+                            ],
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            elevation: 0.0,
+                          ),
                         ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.transparent,
-                          elevation: 0.0,
+                      ),
+                      Visibility(
+                        visible: selectedCab !=
+                            400, // Показываем кнопку только если выбран кабинет 400
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              selectedButton = 2; // Дверь
+                            });
+                          },
+                          child: Column(
+                            children: <Widget>[
+                              Icon(
+                                Icons.door_sliding_sharp,
+                                size: 50,
+                              ),
+                              Text("Дверь"),
+                            ],
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            elevation: 0.0,
+                          ),
                         ),
                       ),
                       Expanded(child: Container()),
