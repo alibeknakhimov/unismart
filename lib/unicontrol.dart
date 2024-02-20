@@ -97,7 +97,7 @@ class _MyWidgetState extends State<MyWidget> {
                           hint: Text(
                             'Выберите кабинет ',
                             style: TextStyle(
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.w600,
                               color: Colors.black,
                               fontSize: 23,
                             ),
@@ -115,7 +115,7 @@ class _MyWidgetState extends State<MyWidget> {
                                 child: Text(
                                   'Кабинет $value',
                                   style: TextStyle(
-                                    fontWeight: FontWeight.w800,
+                                    fontWeight: FontWeight.w600,
                                     color: Colors.black,
                                     fontSize: 27,
                                   ),
@@ -216,25 +216,73 @@ class _MyWidgetState extends State<MyWidget> {
                     height: displayHeight * 0.455,
                     child: Center(
                         child: selectedButton == 1
-                            ? ElevatedButton(
-                                onPressed: () {
-                                  if (selectedCab != null) {
-                                    final docUser = FirebaseFirestore.instance
-                                        .collection('cabinets')
-                                        .doc('${selectedCab!}');
-                                    docUser.update({'light': true});
-                                  }
-                                },
-                                child: Icon(
-                                  Icons.lightbulb_circle,
-                                  color: Colors.white,
-                                  size: 70,
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                    shape: CircleBorder(),
-                                    backgroundColor:
-                                        Color.fromARGB(255, 159, 206, 95),
-                                    fixedSize: Size(120, 120)),
+                            ? Row(
+                                children: [
+                                  Expanded(child: Container()),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      if (selectedCab != null) {
+                                        final docUser = FirebaseFirestore
+                                            .instance
+                                            .collection('cabinets')
+                                            .doc('${selectedCab!}');
+                                        docUser.update({'light1': true});
+                                      }
+                                    },
+                                    child: Icon(
+                                      Icons.lightbulb_circle,
+                                      color: Colors.white,
+                                      size: 60,
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 159, 206, 95),
+                                        fixedSize: Size(100, 100)),
+                                  ),
+                                  Expanded(child: Container()),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      if (selectedCab != null) {
+                                        final docUser = FirebaseFirestore
+                                            .instance
+                                            .collection('cabinets')
+                                            .doc('${selectedCab!}');
+                                        docUser.update({'light2': true});
+                                      }
+                                    },
+                                    child: Icon(
+                                      Icons.lightbulb_circle,
+                                      color: Colors.white,
+                                      size: 60,
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 159, 206, 95),
+                                        fixedSize: Size(100, 100)),
+                                  ),
+                                  Expanded(child: Container()),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      if (selectedCab != null) {
+                                        final docUser = FirebaseFirestore
+                                            .instance
+                                            .collection('cabinets')
+                                            .doc('${selectedCab!}');
+                                        docUser.update({'light3': true});
+                                      }
+                                    },
+                                    child: Icon(
+                                      Icons.lightbulb_circle,
+                                      color: Colors.white,
+                                      size: 60,
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 159, 206, 95),
+                                        fixedSize: Size(100, 100)),
+                                  ),
+                                  Expanded(child: Container()),
+                                ],
                               )
                             : selectedButton == 2
                                 ? ElevatedButton(
@@ -266,7 +314,7 @@ class _MyWidgetState extends State<MyWidget> {
                                                 .instance
                                                 .collection('cabinets')
                                                 .doc('${selectedCab!}');
-                                            docUser.update({'light': true});
+                                            docUser.update({'door': true});
                                           }
                                         },
                                         child: Icon(
